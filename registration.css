@@ -1,0 +1,99 @@
+ body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      position: relative;
+      width: 360px;
+      padding: 20px;
+      border-radius: 15px;
+      background: #fff;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    /* Yellow left shape */
+    .left-shape {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 200px solid #d8a028;
+      border-right: 200px solid transparent;
+      border-radius: 0 0 50px 0;
+      z-index: -1;
+    }
+
+    .logo {
+      position: absolute;
+      top: 40px;
+      right: 20px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    h2 {
+      margin-top: 100px;
+      margin-bottom: 20px;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .form-group {
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 14px;
+      outline: none;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .btn {
+      margin-top: 15px;
+      width: 100%;
+      padding: 12px;
+      background: #d8a028;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #b8881f;
+    }
+
+    .login-link {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      font-weight: bold;
+      color: #000;
+      text-decoration: none;
+    }
+
+    .login-link span {
+      color: #d8a028;
+      font-weight: bold;
+    }
