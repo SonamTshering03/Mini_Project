@@ -10,14 +10,14 @@ body {
 }
 
 .hero {
-    background-image: url('../image/banner-bhutan-meal-big-15465465-_k5465df.jpg'); /* Replace with your image URL */
+    background-image: url('../forgot_password/banner-bhutan-meal-big-15465465-_k5465df.jpg'); /* Replace with your image URL */
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
 }
 /* Navbar */
@@ -28,9 +28,10 @@ body {
   padding: 15px 40px;
   background-color: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 1000;
+  width: 100%;
 }
 
 /* Logo */
@@ -41,8 +42,8 @@ body {
 }
 
 .logo img {
-  width: 60px;
-  height: 60px;
+  width: 35%;
+  height: 100px;
 }
 
 .logo span {
@@ -83,7 +84,7 @@ body {
   background-color: #00796b;
 }
 
-/* Hero Section */
+/* Hero Section */ */
 .hero {
   display: flex;
   justify-content: center;
@@ -92,7 +93,7 @@ body {
   background: url('https://picsum.photos/1200/600') no-repeat center center/cover;
   text-align: center;
   color: white;
-}
+} 
 
 .hero-content {
   background: rgba(0, 0, 0, 0.5);
@@ -110,7 +111,7 @@ body {
   margin-bottom: 25px;
 }
 
-/* Hero Button */
+/* Hero Button
 .btn-primary {
   background-color: #009688;
   color: white;
@@ -118,16 +119,16 @@ body {
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
-}
+} */
 
-.btn-primary:hover {
+/* .btn-primary:hover {
   background-color: #00796b;
-}
+} */
 
-/* Footer */
+/* Footer
 footer {
   text-align: center;
   padding: 15px;
   background: #222;
   color: white;
-}
+} */
