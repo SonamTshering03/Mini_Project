@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Popup Example</title>
+<link rel="stylesheet" href="../CSS/try.css">
+</head>
+<body>
+
+<h2>Popup Example</h2>
+
+<!-- Trigger button -->
+<button id="openBtn">Click Me</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>This is a popup inside the same page!</p>
+  </div>
+</div>
+
+<script>
+  // Get elements
+  const modal = document.getElementById("myModal");
+  const btn = document.getElementById("openBtn");
+  const span = document.querySelector(".close");
+
+  // Open modal on button click
+  btn.onclick = () => modal.style.display = "block";
+
+  // Close modal when 'x' is clicked
+  span.onclick = () => modal.style.display = "none";
+
+  // Close modal when clicking outside modal content
+  window.onclick = (event) => {
+    if (event.target == modal) modal.style.display = "none";
+  }
+</script>
+
+</body>
+</html>
