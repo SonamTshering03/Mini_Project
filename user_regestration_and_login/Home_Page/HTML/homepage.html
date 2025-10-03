@@ -9,22 +9,25 @@
 </head>
 
 <body>
-  <!-- Hamburger Icon -->
-  <div class="hamburger" onclick="toggleSidebar()">
-    <span></span>
-    <span></span>
-    <span></span>
+  <div class="sidebar-container">
+    <!-- Hamburger Icon -->
+    <div class="hamburger" onclick="toggleSidebar()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebar">
+      <a href="../HTML/contact.html">Contact Us</a>
+      <a href="../HTML/feedback.html">Feedback</a>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
   </div>
 
-  <!-- Sidebar Menu -->
-  <div class="sidebar" id="sidebar">
-    <a href="../HTML/contact.html">Contact Us</a>
-    <a href="../HTML/feedback.html">Feedback</a>
-  </div>
-  
-  <!-- Overlay -->
-  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
-  
   <!-- Navbar -->
   <div class="navbar">
     <a href="#cartContainer">🛒</a>
@@ -170,20 +173,19 @@
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" id="closeModal">&times;</span>
+      <img src="../../img/download.png" alt="Site Logo" class="logo">
+
       <h2>Login</h2>
       <form action="#" method="post">
         <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" required>
+          <input type="text" id="username" placeholder="Username" required>
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required>
+          <input type="password" id="password" placeholder="Password" required>
         </div>
-        <a href="../../forgot_password/forgotpassword.html" class="forgot-password">Forgot password ?</a>
         <input type="submit" value="Login">
-        <!-- <button href="1.html" id="login">LOGIN</button> -->
-        <button class="google-btn">Login with Google</button><br>
+        <a href="../../forgot_password/forgotpassword.html" class="forgot-password">Forgot password?</a>
+        <button class="google-btn">Login with Google</button>
         <a href="../../sign_up/sign_up.html" class="register">Register</a>
       </form>
     </div>

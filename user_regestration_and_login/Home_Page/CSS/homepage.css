@@ -84,7 +84,7 @@ html {
   display: flex;
   justify-content: flex-end;
   padding: 20px 50px;
-  background: rgb(34, 46, 34);
+  background: rgb(29, 68, 36);
   position: fixed;
   width: 100%;
   top: 0;
@@ -254,94 +254,79 @@ h2 {
 }
 
 .modal-content {
-  background: white;
+  background: rgba(255, 255, 255, 0.671);
   padding: 30px;
   border-radius: 10px;
   width: 350px;
   text-align: center;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0);
   animation: fadeIn 0.3s ease;
 }
 
 .login-container {
-  background: white;
-  padding: 100px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 350px;
-  text-align: center;
+  background: transparent;
+    padding: 100px;
+    background: white;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+.logo {
+    width: 200px;       /* adjust size */
+    height: auto;
+    margin-bottom: 20px;
 }
 
 h2 {
   margin-bottom: 20px;
 }
 
-.form-group {
-  position: relative;
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  text-align: center;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* equal spacing for all elements */
 }
 
 input[type="text"],
 input[type="password"] {
-  width: 80%;
-  padding: 10px 40px 10px 40px;
-  /* Add padding for icons */
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.icon {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 18px;
-  color: #999;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
 }
 
 input[type="submit"],
 .google-btn {
-  width: 100%;
-  padding: 10px;
-  background-color: #f0ad4e;
-  /* Gold color */
-  border: none;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background-color: #f0ad4e; /* Gold color */
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 input[type="submit"]:hover,
 .google-btn:hover {
-  background-color: #ec971f;
-  /* Darker gold */
+    background-color: #ec971f; /* Darker gold */
 }
 
-.forgot-password {
-  display: block;
-  margin-top: 10px;
-  color: #007bff;
-  text-decoration: none;
-}
-
-.forgot-password:hover {
-  text-decoration: underline;
-}
-
+.forgot-password,
 .register {
-  margin-top: 15px;
-  color: #007bff;
-  text-decoration: none;
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    text-align: center;
 }
 
+.forgot-password:hover,
 .register:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 @media (max-width: 400px) {
