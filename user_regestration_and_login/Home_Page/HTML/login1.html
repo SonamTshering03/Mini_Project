@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Food Booking System</title>
-    <link rel="stylesheet" href="../CSS/homepage.css">
+    <link rel="stylesheet" href="../CSS/login1.css">
 </head>
 
 <body>
@@ -27,45 +27,33 @@
         <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
     </div>
-
     <!-- Navbar -->
     <div class="navbar">
+        <a href="#cartContainer">🛒</a>
         <a href="#hero">HOME</a>
         <a href="#about">ABOUT US</a>
         <a href="#menu">MENU</a>
-        <a id="log_in">LOG IN</a>
+        <div class="profile-menu">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Profile" class="profile-icon"
+                id="profileIcon">
+            <div class="dropdown" id="dropdownMenu">
+                <a href="#">Profile</a>
+                <a href="#">Settings</a>
+                <a href="#">Log out</a>
+            </div>
+        </div>
     </div>
-
     <!-- Hero Section -->
     <div id="hero" class="hero">
         <div class="hero-content">
             <h1>Online Food Booking System</h1>
-            <p>Feed more of your hungry customers by tonight with our restaurant online ordering system software</p>
+            <p>Feed more of your hungry customers by tonight with our restaurant online ordering system software
+            </p>
         </div>
     </div><br><br>
-
     <div>
         <h3 id="about" class="about">About Us</h3><br>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur perspiciatis, at adipisci rerum
-            temporibus
-            ex dolore nam magni recusandae voluptatum voluptates assumenda atque dolorum, quasi ipsa dolor modi in,
-            officiis
-            non repudiandae animi. Omnis consequatur veniam tenetur alias sed facere molestiae culpa mollitia repellat
-            possimus illo voluptatem porro nobis aut veritatis qui deleniti quod recusandae sunt minus, officiis
-            corporis
-            similique. Nobis asperiores mollitia vel ab distinctio, beatae, aut necessitatibus doloremque commodi
-            repudiandae
-            incidunt dolor, sunt pariatur ad soluta blanditiis. Impedit, quae qui? Iure magnam aliquid, asperiores
-            doloremque
-            velit at ad rem eum excepturi pariatur voluptates praesentium perspiciatis maxime? Ipsum pariatur
-            perspiciatis
-            provident eos! Quis magni amet soluta dicta nostrum quibusdam culpa alias perspiciatis odit hic, eum est
-            totam
-            neque rem illo similique autem. Qui quod nulla vitae similique cupiditate cumque, enim officiis non
-            reprehenderit
-            aliquam dolorem quas debitis dolor nobis quia. Illum numquam repellendus voluptas vel autem nesciunt
-            distinctio
-            ipsum?</p><br>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima dignissimos inventore quidem soluta ducimus eaque? Necessitatibus molestiae, asperiores ea animi nesciunt iure tempora sunt quae, obcaecati qui numquam? A impedit ab velit adipisci laboriosam, facere doloribus cumque quae debitis facilis perferendis eligendi vitae ut quam esse sapiente ipsum ducimus praesentium perspiciatis dignissimos fugit, porro eum. Praesentium adipisci, numquam officiis commodi magni, itaque tempora debitis dolor nam voluptatum cupiditate ipsum ut harum hic voluptates molestias vel libero rem quod non, ab error iste! Voluptatibus porro iure eveniet perspiciatis aspernatur sequi obcaecati impedit facilis ex ipsum repellat, dicta labore ab odio dolor illo quis velit nemo hic minima sed! Illo nemo quasi et ipsam. Voluptates fugiat ducimus quas. Sapiente ipsa nemo neque placeat at error iure! Eaque pariatur possimus id similique eveniet quis, in aliquam deserunt excepturi dolores mollitia perferendis suscipit velit adipisci laudantium eligendi laboriosam facilis. Ratione illum facere autem quisquam.</p><br>
     </div>
 
     <div class="container">
@@ -86,7 +74,7 @@
                     <img src="img/Red-Rice.jpg" alt="Fried Rice">
                     <h3>Fried Rice</h3>
                     <p>Nu.40</p>
-                    <button onclick="addToCart('Fried Rice', 40, 'img/Red-Rice.jpg')" class="btn">Add to Cart</button>
+                    <button onclick="addToCart('Fried Rice', 40, 'img/Red-Rice.jpg')" class="btn">Add to Cart </button>
                 </div>
                 <div class="product" data-category="drinks">
                     <img src="../img/coffee.jpg" alt="Coffee">
@@ -152,51 +140,30 @@
                     <img src="img/Red-Rice.jpg" alt="Chicken Tacos">
                     <h3>Chicken Tacos</h3>
                     <p>Nu.11.25</p>
-                    <button onclick="addToCart('Chicken Tacos', 11.25, 'img/Red-Rice.jpg')" class="btn">Add to
-                        Cart</button>
+                    <button onclick="addToCart('Chicken Tacos', 11.25, 'img/Red-Rice.jpg')" class="btn">Add to Cart </button>
                 </div>
                 <div class="product" data-category="other">
                     <img src="https://via.placeholder.com/150" alt="Chocolate Cake">
                     <h3>Chocolate Cake</h3>
                     <p>Nu.6.50</p>
-                    <button onclick="addToCart('Chocolate Cake', 6.50, 'https://via.placeholder.com/150')">Add to
-                        Cart</button>
+                    <button onclick="addToCart('Chocolate Cake', 6.50, 'https://via.placeholder.com/150')">Add to Cart</button>
                 </div>
                 <div class="product" data-category="other">
                     <img src="https://via.placeholder.com/150" alt="Fruit Smoothie">
                     <h3>Fruit Smoothie</h3>
                     <p>Nu.5.75</p>
-                    <button onclick="addToCart('Fruit Smoothie', 5.75, 'https://via.placeholder.com/150')">Add to
-                        Cart</button>
+                    <button onclick="addToCart('Fruit Smoothie', 5.75, 'https://via.placeholder.com/150')">Add to Cart</button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeModal">&times;</span>
-            <img src="../../img/download.png" alt="Site Logo" class="logo">
-
-            <h2>Login</h2>
-            <form action="#" method="post">
-                <div class="form-group">
-                    <input type="text" id="username" placeholder="Username" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="password" placeholder="Password" required>
-                </div>
-                <button type="button" id="loginButton">Login</button>
-                <!-- <input type="submit" value="Login">  -->
-                <a href="../../forgot_password/forgotpassword.html" class="forgot-password">Forgot password?</a>
-                <button class="google-btn">Login with Google</button>
-                <a href="../../sign_up/sign_up.html" class="register">Register</a>
-            </form>
+        <div class="cart" id="cartContainer">
+            <h2>Your Cart</h2>
+            <ul id="cartItems"></ul>
+            <p id="total">Total: Nu.0.00</p>
+            <button onclick="order()" class="btn">Order</button>
         </div>
     </div>
-
-    <script src="../JS/homepage.js"></script>
+    <script src="../JS/login1.js"></script>
 </body>
-
 </html>
