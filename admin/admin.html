@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin Dashboard — Online Food Booking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* small extra styling for scrollbar and transitions */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.12);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+    <div class="min-h-screen flex">
+        <!-- SIDEBAR -->
+        <aside id="sb" class="w-64 bg-white/90 backdrop-blur border-r border-slate-200 p-4 hidden md:block">
+            <div class="mb-6">
+                <h1 class="text-xl font-semibold">FoodBook Admin</h1>
+                <p class="text-sm text-slate-500 mt-1">Manage orders • menus • analytics</p>
+            </div>
+            <nav class="space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-100" href="#dash">🏠 Dashboard</a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-100" href="#orders">📦 Orders</a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-100" href="menu.html">🍔 Manage Menu</a>
+            </nav>
+            <div class="mt-6 pt-4 border-t border-slate-100">
+                <p class="text-xs text-slate-500">Quick actions</p>
+                <div class="flex gap-2 mt-2">
+                    <a id="new-item" class="flex-1 rounded-md py-2 text-sm bg-emerald-500 text-white hover:bg-emerald-600" href="add_new_item.html">New Item</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 p-4 md:p-8">
+            <!-- TOPBAR -->
+            <header class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-3">
+                    <button id="hb" class="md:hidden p-2 rounded-md bg-white border">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <h2 class="text-2xl font-semibold" id="pg-title">Dashboard</h2>
+                    <div class="hidden sm:flex items-center bg-white border rounded-lg px-2 py-1 ml-4">
+                        <input id="search" class="outline-none text-sm"
+                            placeholder="Search orders, items, customers..." />
+                        <button id="search-btn" class="px-2">🔎</button>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-sm text-slate-600 text-right">
+                        <div>Admin • <span id="today"></span></div>
+                        <div class="text-xs text-slate-400">Online</div>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500 text-white flex items-center justify-center font-medium">
+                        A</div>
+                </div>
+            </header>
+
+            <!-- DASHBOARD GRID -->
+            <section id="dash" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm border">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-slate-500">Today's Orders</p>
+                                <h3 class="text-2xl font-bold" id="orders-today">0</h3>
+                            </div>
+                            <div class="text-xs text-slate-400">+5% vs yesterday</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow-sm border">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-slate-500">Revenue</p>
+                                <h3 class="text-2xl font-bold" id="rev-today">Nu.0</h3>
+                            </div>
+                            <div class="text-xs text-slate-400">Net</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow-sm border">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-slate-500">Active Customers</p>
+                                <h3 class="text-2xl font-bold" id="active-cust">0</h3>
+                            </div>
+                            <div class="text-xs text-slate-400">Last 7 days</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div class="lg:col-span-2 bg-white p-4 rounded-lg shadow-sm border">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="font-semibold">Orders Overview</h4>
+                            <div class="text-sm text-slate-500">Filter:
+                                <select id="orders-range" class="ml-2 border rounded px-2 py-1 text-sm">
+                                    <option value="3">Last 3 days</option>
+                                    <option value="7">Last 7 days</option>
+                                    <option value="30">Last 30 days</option>
+                                </select>
+                            </div>
+                        </div>
+                        <canvas id="ordersChart" height="120"></canvas>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow-sm border">
+                        <h4 class="font-semibold mb-3">Top Items</h4>
+                        <ul id="top-items" class="space-y-2 text-sm text-slate-700"></ul>
+                    </div>
+                </div>
+
+                <div id="orders" class="bg-white p-4 rounded-lg shadow-sm border">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-semibold">Recent Orders</h4>
+                        <div class="flex items-center gap-2">
+                            <label class="text-sm text-slate-500">Status</label>
+                            <select id="status-filter" class="border rounded px-2 py-1 text-sm">
+                                <option value="all">All</option>
+                                <option value="accepted">Accepted</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm">
+                            <thead class="text-slate-500 text-left border-b">
+                                <tr>
+                                    <th class="py-2">Order ID</th>
+                                    <th class="py-2">Customer</th>
+                                    <th class="py-2">Items</th>
+                                    <th class="py-2">Total</th>
+                                    <th class="py-2">Status</th>
+                                    <th class="py-2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table" class="divide-y"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="text-center text-xs text-slate-400 mt-6">© <span id="year"></span> FoodBook — Admin Panel
+            </footer>
+        </main>
+    </div>
+
+    <!-- MODAL (simple) -->
+    <div id="modal" class="fixed inset-0 bg-black/40 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-lg w-full max-w-md p-4">
+            <h3 class="font-semibold mb-2">Edit Order</h3>
+            <div id="modal-body" class="text-sm text-slate-700 mb-4"></div>
+            <div class="flex justify-end gap-2">
+                <button id="modal-close" class="px-3 py-1 rounded border">Close</button>
+                <button id="modal-save" class="px-3 py-1 rounded bg-emerald-500 text-white">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Utility & sample data ---
+        const todayEl = document.getElementById('today');
+        const yearEl = document.getElementById('year');
+        const now = new Date();
+        todayEl.textContent = now.toLocaleDateString();
+        yearEl.textContent = now.getFullYear();
+
+        // Sample dataset (replace with API calls in production)
+        const SAMPLE_ORDERS = [
+            { id: 'ORD-1001', customer: 'Jayden', items: ['Margherita', 'Coke'], total: 18.5, status: 'accepted', date: daysAgo(0) },
+            { id: 'ORD-1002', customer: 'Asha', items: ['Tandoori Chicken'], total: 12.0, status: 'accepted', date: daysAgo(0) },
+            { id: 'ORD-1003', customer: 'Ravi', items: ['Veg Biryani', 'Lassi'], total: 10.5, status: 'cancelled', date: daysAgo(1) },
+            { id: 'ORD-1004', customer: 'Maya', items: ['Paneer Butter Masala'], total: 14.0, status: 'cancelled', date: daysAgo(2) },
+            { id: 'ORD-1005', customer: 'Sam', items: ['Burger', 'Fries'], total: 11.5, status: 'accepted', date: daysAgo(3) }
+        ];
+
+        const MENU_ITEMS = [
+            { name: 'Margherita', sold: 42 },
+            { name: 'Burger', sold: 38 },
+            { name: 'Tandoori Chicken', sold: 31 },
+            { name: 'Veg Biryani', sold: 29 }
+        ];
+
+        function daysAgo(n) { const d = new Date(); d.setDate(d.getDate() - n); return d; }
+
+        // --- Dashboard numbers ---
+        document.getElementById('orders-today').textContent = SAMPLE_ORDERS.filter(o => sameDay(o.date, new Date())).length;
+        document.getElementById('rev-today').textContent = 'Nu.' + SAMPLE_ORDERS.filter(o => sameDay(o.date, new Date())).reduce((s, o) => s + o.total, 0).toFixed(2);
+        document.getElementById('active-cust').textContent = new Set(SAMPLE_ORDERS.map(o => o.customer)).size;
+
+        function sameDay(a, b) { return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
+
+        // --- Populate top items ---
+        const topItemsEl = document.getElementById('top-items');
+        MENU_ITEMS.forEach(it => {
+            const li = document.createElement('li');
+            li.className = 'flex justify-between';
+            li.innerHTML = `<span>${it.name}</span><span class='text-slate-500'>${it.sold}</span>`;
+            topItemsEl.appendChild(li);
+        });
+
+        // --- Orders table ---
+        const ordersTable = document.getElementById('orders-table');
+        function renderOrders(filterStatus = 'all') {
+            ordersTable.innerHTML = '';
+            SAMPLE_ORDERS.filter(o => filterStatus === 'all' ? true : o.status === filterStatus).forEach(o => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+          <td class='py-3'>${o.id}</td>
+          <td class='py-3'>${o.customer}</td>
+          <td class='py-3'>${o.items.join(', ')}</td>
+          <td class='py-3'>Nu.${o.total.toFixed(2)}</td>
+          <td class='py-3'><span class='px-2 py-0.5 rounded text-xs ${statusClass(o.status)}'>${o.status}</span></td>
+          <td class='py-3'><button data-id='${o.id}' class='edit-btn text-sm underline'>Edit</button></td>
+        `;
+                ordersTable.appendChild(tr);
+            });
+        }
+
+        function statusClass(s) {
+            if (s === 'accepted') return 'bg-amber-100 text-amber-700';
+            if (s === 'cancelled') return 'bg-red-100 text-red-700';
+            return 'bg-slate-100 text-slate-700';
+        }
+        renderOrders();
+
+        // --- Chart ---
+        const ctx = document.getElementById('ordersChart').getContext('2d');
+        let ordersChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: lastNDays(7).map(d => d.toLocaleDateString()),
+                datasets: [{ label: 'Orders', data: randomDataForDays(7), fill: true }]
+            },
+            options: { responsive: true, plugins: { legend: { display: false } } }
+        });
+
+        function lastNDays(n) { const arr = []; for (let i = n - 1; i >= 0; i--) arr.push(daysAgo(i)); return arr; }
+        function randomDataForDays(n) { return lastNDays(n).map(() => Math.floor(Math.random() * 10) + 1); }
+
+        // Update chart when range changes (sample behavior)
+        document.getElementById('orders-range').addEventListener('change', (e) => {
+            const days = Number(e.target.value);
+            ordersChart.data.labels = lastNDays(days).map(d => d.toLocaleDateString());
+            ordersChart.data.datasets[0].data = randomDataForDays(days);
+            ordersChart.update();
+        });
+
+        // --- Filters & search ---
+        document.getElementById('status-filter').addEventListener('change', (e) => renderOrders(e.target.value));
+        document.getElementById('search-btn').addEventListener('click', () => doSearch());
+        document.getElementById('search').addEventListener('keydown', (e) => { if (e.key === 'Enter') doSearch(); });
+
+        function doSearch() {
+            const q = document.getElementById('search').value.trim().toLowerCase();
+            if (!q) { renderOrders(); return; }
+            const results = SAMPLE_ORDERS.filter(o => o.id.toLowerCase().includes(q) || o.customer.toLowerCase().includes(q) || o.items.join(' ').toLowerCase().includes(q));
+            ordersTable.innerHTML = '';
+            results.forEach(o => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+          <td class='py-3'>${o.id}</td>
+          <td class='py-3'>${o.customer}</td>
+          <td class='py-3'>${o.items.join(', ')}</td>
+          <td class='py-3'>Nu.${o.total.toFixed(2)}</td>
+          <td class='py-3'><span class='px-2 py-0.5 rounded text-xs ${statusClass(o.status)}'>${o.status}</span></td>
+          <td class='py-3'><button data-id='${o.id}' class='edit-btn text-sm underline'>Edit</button></td>
+        `;
+                ordersTable.appendChild(tr);
+            });
+        }
+
+        // --- Modal handling for editing an order (demo) ---
+        const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modal-body');
+        const modalClose = document.getElementById('modal-close');
+        const modalSave = document.getElementById('modal-save');
+
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('edit-btn')) {
+                const id = e.target.dataset.id;
+                openEditModal(id);
+            }
+        });
+        modalClose.addEventListener('click', () => modal.classList.add('hidden'));
+
+        function openEditModal(id) {
+            const order = SAMPLE_ORDERS.find(o => o.id === id);
+            if (!order) return;
+            modalBody.innerHTML = `
+        <div class='space-y-2'>
+          <div><strong>Order:</strong> ${order.id}</div>
+          <div><strong>Customer:</strong> ${order.customer}</div>
+          <div class='mt-2'>
+            <label class='block text-sm text-slate-600 mb-1'>Status</label>
+            <select id='modal-status' class='w-full border rounded px-2 py-1'>
+              <option value='accepted'>Accepted</option>
+              <option value='cancelled'>Cancelled</option>
+            </select>
+          </div>
+        </div>
+      `;
+            document.getElementById('modal-status').value = order.status;
+            modal.classList.remove('hidden');
+
+            modalSave.onclick = () => {
+                order.status = document.getElementById('modal-status').value;
+                modal.classList.add('hidden');
+                renderOrders(document.getElementById('status-filter').value);
+            }
+        }
+
+        // --- Responsive sidebar toggle ---
+        document.getElementById('hamburger').addEventListener('click', () => {
+            const sb = document.getElementById('sidebar');
+            if (sb.classList.contains('hidden')) sb.classList.remove('hidden'); else sb.classList.add('hidden');
+        });
+
+        // Helper: basic click for New Item
+        document.getElementById('new-item').addEventListener('click', () => alert('Open "Add new menu item" flow (not implemented in demo)'));
+
+    </script>
+</body>
+
+</html>
