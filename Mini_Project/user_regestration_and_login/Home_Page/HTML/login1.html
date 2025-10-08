@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Food Booking System</title>
+    <link rel="stylesheet" href="../CSS/login1.css">
+</head>
+
+<body>
+    <div class="sidebar-container">
+        <!-- Hamburger Icon -->
+        <div class="hamburger" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <div class="sidebar" id="sidebar">
+            <a href="../HTML/contact.html">Contact Us</a>
+            <a href="../HTML/feedback.html">Feedback</a>
+        </div>
+
+        <!-- Overlay -->
+        <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    </div>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#cartContainer">🛒</a>
+        <a href="#hero">HOME</a>
+        <a href="#">ABOUT US</a>
+        <a href="#menu">MENU</a>
+        <div class="profile-menu">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Profile" class="profile-icon"
+                id="profileIcon">
+            <div class="dropdown" id="dropdownMenu">
+                <a href="../../../profile/profile/profile_setting/profile_setting.html">Profile</a>
+                <!-- <a href="#">Settings</a> -->
+                <a href="homepage.html">Log out</a>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Section -->
+    <div id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Online Food Booking System</h1>
+            <p>Feed more of your hungry customers by tonight with our restaurant online ordering system software
+            </p>
+        </div>
+    </div><br><br>
+    
+    <div class="container">
+        <div class="products-container">
+            <div class="filter-container">
+                <h3 class="menu" id="menu">Menu</h3>
+                <input type="text" id="search" placeholder="Search products..." oninput="filterProducts()">
+                <select id="filter" onchange="filterProducts()">
+                    <option value="">All</option>
+                    <option value="food">Food</option>
+                    <option value="drinks">Drinks</option>
+                    <option value="fast-food">fast-food</option>
+                </select>
+            </div>
+            <div class="products-container"></div>
+            <div class="products" id="productContainer">
+                <div class="product" data-category="food">
+                    <img src="../../img/Chicken-Curry.jpg" alt="Chicken-Curry">
+                    <h3>Chicken-Curry</h3>
+                    <p>Nu.40</p>
+                    <button onclick="addToCart('Chicken-Curry', 40, '../../img/Chicken-Curry.jpg')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="fast-food">
+                    <img src="../../img/chilli_bajji.webp" alt="Chilli Bajji">
+                    <h3>Chilli Bajji</h3>
+                    <p>Nu.25</p>
+                    <button onclick="addToCart('Chilli Bajji', 25, '../../img/chilli_bajji.webp')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="../../img/chowmein.png" alt="Chowmein">
+                    <h3>Chowmein</h3>
+                    <p>Nu.45</p>
+                    <button onclick="addToCart('Chowmein', 45, '../../img/chowmein.png')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="fast-food">
+                    <img src="../../img/momo.jpg" alt="Momo">
+                    <h3>Momo</h3>
+                    <p>Nu.35</p>
+                    <button onclick="addToCart('Momo', 35, '../../img/momo.jpg')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="fast-food">
+                    <img src="../../img/Fried rice.jpeg" alt="Fried-Rice">
+                    <h3>Fried Rice</h3>
+                    <p>Nu.35</p>
+                    <button onclick="addToCart('Fried-Rice', 35, '../../img/Fried rice.jpeg')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="../../img/lemon_tea.webp" alt="lemon_tea">
+                    <h3>lemon Tea</h3>
+                    <p>Nu.35</p>
+                    <button onclick="addToCart('lemon_tea', 35, '../../img/lemon_tea.webp')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="../../img/emadatsi.jpeg" alt="Ema_Datshi">
+                    <h3>Ema Datshi</h3>
+                    <p>Nu.35</p>
+                    <button onclick="addToCart('Ema_Datshi', 35, '../../img/emadatsi.jpeg')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="../../img/kewadatsi.jpeg" alt="Kewa_Datshi">
+                    <h3>Kewa Datshi</h3>
+                    <p>Nu.35</p>
+                    <button onclick="addToCart('Kewa_Datshi', 35, '../../img/kewadatsi.jpeg')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="../../img/icecoke.jpg" alt="Ice_coke">
+                    <h3>Ice Coke</h3>
+                    <p>Nu.35</p>
+                    <button onclick="addToCart('Ice_coke', 35, '../../img/icecoke.jpg')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="../../img/milk-tea.jpg" alt="Milk_Tea">
+                    <h3>Milk Tea</h3>
+                    <p>Nu.15</p>
+                    <button onclick="addToCart('Milk_Tea', 15, '../../img/milk-tea.jpg')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="fast-food">
+                    <img src="../../img/pasta.webp" alt="Pasta">
+                    <h3>Pasta</h3>
+                    <p>Nu.11.25</p>
+                    <button onclick="addToCart('Pasta', 11.25, '../../img/pasta.webp')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="fast-food">
+                    <img src="../../img/pokora.webp" alt="pokora">
+                    <h3>Pokora</h3>
+                    <p>Nu.11.25</p>
+                    <button onclick="addToCart('Pokora', 11.25, '../../img/pokora.webp')" class="btn">Add to Cart</button>
+                </div>
+                <div class="product" data-category="fast-food">
+                    <img src="../../img/shabaley.jpeg" alt="Shabaley">
+                    <h3>Shabaley</h3>
+                    <p>Nu.11.25</p>
+                    <button onclick="addToCart('Shabaley', 11.25, '../../img/shabaley.jpeg')" class="btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart" id="cartContainer">
+            <h2>Your Cart</h2>
+            <ul id="cartItems"></ul>
+            <p id="total">Total: Nu.0.00</p>
+            <button onclick="order()" class="btn">Order</button>
+        </div>
+    </div>
+    <script src="../JS/login1.js"></script>
+</body>
+</html>
