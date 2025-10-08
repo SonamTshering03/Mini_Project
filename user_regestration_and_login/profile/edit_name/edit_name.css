@@ -1,0 +1,252 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f9;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 140px;
+}
+
+/* --- Header Section (Blue Bar + Logo) --- */
+.header {
+    width: 100%;
+    background-color: #3f4bb8; /* same blue as profile setting */
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.header-title {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.logo-circle {
+    width: 100px; /* increased size */
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+    top: 10px; /* slight adjustment downwards */
+    right: 30px;
+    background: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* optional for subtle depth */
+}
+
+.logo-img {
+    width: 120px;  /* increase this to make logo fill more of the circle */
+    height: 120px;
+    object-fit: cover; /* ensures full logo is visible */
+    border-radius: 50%;
+}
+
+/* --- Center the main content area --- */
+.content-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* centers horizontally */
+    justify-content: center; /* centers vertically */
+    min-height: 80vh;        /* take most of viewport height */
+    padding: 40px 0;
+}
+
+/* --- Centered form section --- */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* center all child elements */
+    text-align: center;
+    width: 100%;
+}
+
+/* --- Form itself --- */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 550px;
+    margin-top: 40px;
+}
+
+/* --- Input boxes --- */
+.text-input {
+    width: 100%;
+    padding: 14px 24px;
+    border: 1px solid #999;
+    border-radius: 10px;
+    font-size: 17px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.text-input::placeholder {
+    color: #888;
+    font-weight: 400;
+}
+
+.text-input:focus {
+    border-color: #e5b85a;
+}
+
+/* --- Save button --- */
+.save-button {
+    width: 100%;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 10px;
+    background-color: #e5b85a;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.save-button:hover {
+    background-color: #d4a74f;
+    transform: translateY(-1px);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+    .content-area {
+        padding: 40px 20px;
+    }
+
+    .form-container {
+        padding: 80px 20px;
+    }
+
+    .page-title {
+        font-size: 30px;
+        top: 60px;
+        left: 20px;
+        max-width: 70%;
+    }
+
+    .logo-circle {
+        width: 80px;
+        height: 80px;
+        top: 10px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        position: relative;
+        background-color: #3f4ab8;
+    }
+    .page-title {
+        position: static;
+        font-size: 22px;
+        color: white;
+        margin: 0;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .logo-circle {
+        position: static;
+        width: 50px;
+        height: 50px;
+        margin: 0;
+    }
+
+    .logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .form-container {
+        padding: 40px 10px;
+        width: 100%;
+    }
+
+    .text-input,
+    .save-button {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 16px;
+    }
+
+    .save-button {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 22px;
+    }
+
+    .text-input,
+    .save-button {
+        font-size: 15px;
+        padding: 10px 14px;
+    }
+}
+
+/* SweetAlert Custom Styling */
+.swal2-popup.popup-rounded {
+    border-radius: 12px !important;
+    padding: 30px 20px !important;
+}
+
+.swal2-icon.swal2-success {
+    border-color: #b7e3b2 !important;
+    color: #7ed957 !important;
+}
+
+.swal2-icon.swal2-error {
+    border-color: #f7b6b6 !important;
+    color: #ff4d4d !important;
+}
+
+.swal-title {
+    font-weight: 700 !important;
+    color: #333 !important;
+}
+
+.swal-confirm {
+    background-color: #e5b85a !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    padding: 10px 30px !important;
+    font-weight: 600 !important;
+    border: none !important;
+}
+
+.swal-confirm:hover {
+    background-color: #d4a74f !important;
+}
