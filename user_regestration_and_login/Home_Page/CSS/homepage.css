@@ -199,9 +199,9 @@ html {
 }
 
 .product:hover {
-  transform: translateY(-10px);
+  transform: scale(1.05);
+  transition: transform 0.3s;
 }
-
 .product img {
   width: 100%;
   /* Fixed width */
@@ -363,4 +363,22 @@ input[type="submit"]:hover,
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+  background-color: rgb(43, 68, 48);
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+}
+
+.footer p {
+  margin: 0;
+  letter-spacing: 0.5px;
 }
