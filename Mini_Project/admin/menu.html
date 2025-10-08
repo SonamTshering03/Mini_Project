@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        .hero-content {
+            text-align: center;
+            margin: auto;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            flex: 1;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .filter-container select,
+        .filter-container input {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            height: 40px;
+            box-sizing: border-box;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 20px;
+            width: 100%;
+            margin-right: 20px;
+            transition: grid-template-columns 0.3s;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            text-align: center;
+            transition: transform 0.5s;
+            overflow: hidden;
+            box-shadow: 0 2px 6px;
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+        }
+
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: yellow;
+            border-radius: 10px;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: orange;
+        }
+
+        .menu-header {
+            margin-right: auto;
+            margin-left: 10px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .action-btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .delete-btn {
+            background-color: red;
+            color: white;
+        }
+
+        .quantity-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            border: 1px solid #ddd;
+            background-color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="products-container">
+            <h1>Manage Menu</h1>
+            <div class="filter-container">
+                <h3 class="menu-header" id="menu">Menu</h3>
+                <input type="text" id="search" placeholder="Search products..." oninput="filterProducts()">
+                <select id="filter" onchange="filterProducts()">
+                    <option value="">All</option>
+                    <option value="food">Food</option>
+                    <option value="drinks">Drinks</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="products" id="productContainer">
+                <div class="product" data-category="food">
+                    <img src="img/Red-Rice.jpg" alt="Fried Rice">
+                    <h3>Fried Rice</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Fried Rice', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="img/Red-Rice.jpg" alt="Momo">
+                    <h3>Momo</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Momo', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Lemon Tea">
+                    <h3>Lemon Tea</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Lemon Tea', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Black Coffee">
+                    <h3>Black Coffee</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Black Coffee', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Green Tea">
+                    <h3>Green Tea</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Green Tea', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="img/Red-Rice.jpg" alt="Fried Rice">
+                    <h3>Fried Rice</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Fried Rice', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="img/Red-Rice.jpg" alt="Momo">
+                    <h3>Momo</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Momo', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Lemon Tea">
+                    <h3>Lemon Tea</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Lemon Tea', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Black Coffee">
+                    <h3>Black Coffee</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Black Coffee', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Green Tea">
+                    <h3>Green Tea</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Green Tea', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="img/Red-Rice.jpg" alt="Fried Rice">
+                    <h3>Fried Rice</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Fried Rice', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="img/Red-Rice.jpg" alt="Momo">
+                    <h3>Momo</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Momo', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Lemon Tea">
+                    <h3>Lemon Tea</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Lemon Tea', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Black Coffee">
+                    <h3>Black Coffee</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Black Coffee', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Green Tea">
+                    <h3>Green Tea</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Green Tea', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="img/Red-Rice.jpg" alt="Fried Rice">
+                    <h3>Fried Rice</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Fried Rice', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="img/Red-Rice.jpg" alt="Momo">
+                    <h3>Momo</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Momo', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Lemon Tea">
+                    <h3>Lemon Tea</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Lemon Tea', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Black Coffee">
+                    <h3>Black Coffee</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Black Coffee', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Green Tea">
+                    <h3>Green Tea</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Green Tea', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="img/Red-Rice.jpg" alt="Fried Rice">
+                    <h3>Fried Rice</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Fried Rice', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="food">
+                    <img src="img/Red-Rice.jpg" alt="Momo">
+                    <h3>Momo</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Momo', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Lemon Tea">
+                    <h3>Lemon Tea</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Lemon Tea', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Black Coffee">
+                    <h3>Black Coffee</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Black Coffee', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+                <div class="product" data-category="drinks">
+                    <img src="img/Red-Rice.jpg" alt="Green Tea">
+                    <h3>Green Tea</h3>
+                    <p class="price">Nu.40</p>
+                    <button onclick="addToCart('Green Tea', 40, 'img/Red-Rice.jpg')" class="btn">Add</button>
+                    <button onclick="editPrice(this)" class="btn">Edit Price</button>
+                </div>
+            </div>
+
+            <!-- Product List Table -->
+            <table id="productList">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Added items will appear here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const cart = new Set(); // Use Set to track added items
+        let productIdCounter = 101; // Starting Product ID
+
+        function filterProducts() {
+            const searchValue = document.getElementById('search').value.toLowerCase();
+            const filterValue = document.getElementById('filter').value;
+            const products = document.querySelectorAll('.product');
+
+            products.forEach(product => {
+                const productName = product.querySelector('h3').textContent.toLowerCase();
+                const productCategory = product.getAttribute('data-category');
+
+                const matchesSearch = productName.includes(searchValue);
+                const matchesFilter = filterValue === '' || productCategory === filterValue;
+
+                product.style.display = (matchesSearch && matchesFilter) ? 'block' : 'none';
+            });
+        }
+
+        function addToCart(name, price, image) {
+            if (cart.has(name)) {
+                alert(`${name} is already added to the cart.`);
+            } else {
+                cart.add(name);
+                const date = new Date().toISOString().split('T')[0]; // Get current date
+
+                // Add the item to the product list table
+                const tableBody = document.getElementById('productList').getElementsByTagName('tbody')[0];
+                const newRow = tableBody.insertRow();
+                newRow.innerHTML = `
+                    <td>${productIdCounter++}</td>
+                    <td>${name}</td>
+                    <td>Nu.${price}</td>
+                    <td>${date}</td>
+                    <td>
+                        <div class="quantity-container">
+                            <button class="quantity-btn" onclick="updateQuantity(this, -1)">-</button>
+                            <input type="text" class="quantity-input" value="1" onchange="checkQuantity(this)" oninput="validateQuantity(this)">
+                            <button class="quantity-btn" onclick="updateQuantity(this, 1)">+</button>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="action-btn delete-btn" onclick="deleteItem(this)">Delete</button>
+                    </td>
+                `;
+                console.log(`Added to cart: ${name} for Nu.${price}`);
+            }
+        }
+
+        function editPrice(button) {
+            const productDiv = button.parentElement;
+            const priceElement = productDiv.querySelector('.price');
+            const currentPrice = priceElement.textContent.replace('Nu.', '').trim();
+
+            const newPrice = prompt('Enter new price:', currentPrice);
+            if (newPrice !== null && !isNaN(newPrice) && newPrice > 0) {
+                priceElement.textContent = `Nu.${newPrice}`;
+                const productName = productDiv.querySelector('h3').textContent;
+                const rows = document.getElementById('productList').getElementsByTagName('tbody')[0].rows;
+
+                for (let row of rows) {
+                    if (row.cells[1].textContent === productName) {
+                        row.cells[2].textContent = `Nu.${newPrice}`;
+                        break;
+                    }
+                }
+            } else {
+                alert('Please enter a valid price.');
+            }
+        }
+
+        function validateQuantity(input) {
+            const value = input.value;
+            if (!/^\d*$/.test(value)) { // Only allow digits
+                input.value = '';
+            }
+        }
+
+        function updateQuantity(button, change) {
+            const quantityInput = button.parentElement.querySelector('.quantity-input');
+            let quantity = parseInt(quantityInput.value);
+            quantity += change;
+
+            if (quantity < 0) quantity = 0; // Prevent quantity from going below 0
+            quantityInput.value = quantity;
+            checkQuantity(quantityInput); // Check if quantity is 0
+        }
+
+        function checkQuantity(input) {
+            const quantity = parseInt(input.value);
+            if (quantity <= 0) {
+                const row = input.closest('tr');
+                row.remove(); // Remove the item from the table
+            }
+        }
+
+        function deleteItem(button) {
+            const row = button.closest('tr');
+            row.remove();
+        }
+    </script>
+</body>
+
+</html>
