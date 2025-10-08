@@ -35,8 +35,8 @@
             <a id="about">ABOUT US ▼</a>
             <div class="dropdown-content">
                 <a href="../HTML/about_us.html">About System</a>
-                <a href="../HTML/about_ordering.html">About Ordering</a>
-                <a href="../HTML/about_payment.html">About Payment</a>
+                <a href="../HTML/about_us.html">About Ordering</a>
+                <a href="../HTML/about_us.html">About Payment</a>
             </div>
         </div>
         <a href="#menu">MENU</a>
@@ -145,6 +145,63 @@
                 </div>
             </div>
         </div>
+    </div><br><br><br>
+    <div>
+        <section class="team-section">
+            <h2 class="meet_team">Meet Our Team</h2>
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="../../img/Dumjan.jpg" alt="Member 1">
+                    <h3>Sonam Tshering Dumjan</h3>
+                    <p>Project Manager</p>
+                    <button class="contact-btn" onclick="toggleContact(this)">Contact</button>
+                    <div class="contact-info">
+                        <p>📞 +975 17670214</p>
+                        <p>📧 05240152.jnec@rub.edu.bt</p>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img src="../../img/Pem_Dorji.jpg" alt="Member 2">
+                    <h3>Pem Dorji</h3>
+                    <p>UI/UX Designer</p>
+                    <button class="contact-btn" onclick="toggleContact(this)">Contact</button>
+                    <div class="contact-info">
+                        <p>📞 +975 17981881</p>
+                        <p>📧 05240142.jnec@rub.edu.bt</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="../../img/Sangay.jpg" alt="Member 3">
+                    <h3>Sangay Norbu</h3>
+                    <p>Frontend Developer</p>
+                    <button class="contact-btn" onclick="toggleContact(this)">Contact</button>
+                    <div class="contact-info">
+                        <p>📞 +975 17590265</p>
+                        <p>📧 05240148.jnec@rub.edu.bt</p>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img src="../../img/Tshewang.jpg" alt="Member 4">
+                    <h3>Tshewang Dema</h3>
+                    <p>Backend Developer</p>
+                    <button class="contact-btn" onclick="toggleContact(this)">Contact</button>
+                    <div class="contact-info">
+                        <p>📞 +975 77478527</p>
+                        <p>📧 05240158.jnec@rub.edu.bt</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <script>
+            function toggleContact(button) {
+                const info = button.nextElementSibling;
+                info.classList.toggle("show");
+            }
+        </script>
     </div>
 
     <!-- Login Modal -->

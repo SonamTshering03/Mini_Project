@@ -382,3 +382,85 @@ input[type="submit"]:hover,
   margin: 0;
   letter-spacing: 0.5px;
 }
+/* team - section */
+team-section {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.team-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #2c3e50;
+}
+
+.team-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.team-member {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.team-member img {
+  width: 100%;
+  height: 250px;          /* slightly taller */
+  object-fit: cover;      /* crop edges evenly */
+  object-position: top;   /* focus more on faces */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.team-member h3 {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #2c3e50;
+}
+
+.team-member p {
+  color: #777;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.contact-btn {
+  background: #ffeb3b;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.3s ease;
+}
+
+.contact-btn:hover {
+  background: #fdd835;
+}
+
+/* Hidden contact info initially */
+.contact-info {
+  display: none;
+  margin-bottom: 15px;
+  animation: fadeIn 0.4s ease;
+}
+
+.contact-info.show {
+  display: block;
+}
+.meet_team{
+  text-align: center;
+}
