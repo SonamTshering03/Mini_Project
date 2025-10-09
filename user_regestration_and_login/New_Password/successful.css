@@ -1,0 +1,77 @@
+body {
+  font-family: Arial, sans-serif;
+  /* background: url('background.jpg') no-repeat center center/cover;
+  background-size: cover; */
+  background-color: rgba(95, 82, 82, 0.164);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  text-align: center;
+  width: 320px;
+}
+
+/* Centered logo */
+.logo {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 30px auto;
+  /* centers it + adds bottom spacing */
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Centered success icon */
+.success-icon {
+  background-color: #f9c74f;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 30px auto;
+  /* centers it + adds bottom spacing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-icon::before {
+  content: "✔";
+  font-size: 28px;
+  color: white;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+p {
+  color: #666;
+  margin: 10px 0 20px;
+  font-size: 14px;
+}
+
+.continue-btn {
+  background-color: #f9c74f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.continue-btn:hover {
+  background-color: #fcbf49;
+}
